@@ -2,9 +2,20 @@ body {
 	background-color: hsl(60, 2%, 95%);
 }
 header {
-	height: 100px;
+	height: 140px;
 	grid-column: 1 / span 5;
 	grid-row: 1;
+}
+header h1 {
+	line-height: 0.7em;
+}
+header ul {
+	display: inline-block;
+}
+header li {
+	list-style: none;
+	display: inline-block;
+	padding: 0.1em 1em;
 }
 footer {
 	grid-column: 1 / span 5;
@@ -13,10 +24,15 @@ footer {
 tspan {
 	font-size: 8px;
 }
+.top-nav li {
+	display: inline;
+	list-style: none;
+	padding: 0px 0.7em;
+}
 .overview {
 	display: grid;
 	grid-template-columns: 10% 20% 30% 20% 20%;
-	grid-template-rows: 10% auto 10%;
+	grid-template-rows: 12% auto 10%;
 	grid-column-gap: 0px;
 	grid-row-gap: 0px;
 }

@@ -89,7 +89,6 @@ class StudentDashboard extends React.Component {
 
 		return (
 			<div className={'overview'}>
-				<Header />
 				<Filter
 					students={this.state.students}
 					tasks={this.state.program}
@@ -116,7 +115,6 @@ class StudentDashboard extends React.Component {
 								tickLabels: { fontSize: 5, padding: 5, angle: 45 }
 							}}
 						/>
-						{/* <VictoryAxis dependent /> */}
 						<VictoryGroup offset={10} colorScale={'qualitative'}>
 							<VictoryBar
 								animate={{
