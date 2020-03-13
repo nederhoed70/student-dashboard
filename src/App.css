@@ -1,38 +1,68 @@
-.App {
-  text-align: center;
+body {
+	background-color: hsl(60, 2%, 95%);
+}
+header {
+	height: 140px;
+	grid-column: 1 / span 5;
+	grid-row: 1;
+}
+header h1 {
+	line-height: 0.7em;
+}
+header ul {
+	display: inline-block;
+}
+header li {
+	list-style: none;
+	display: inline-block;
+	padding: 0.1em 1em;
+}
+footer {
+	grid-column: 1 / span 5;
+	grid-row: 3;
+}
+tspan {
+	font-size: 8px;
+}
+.top-nav li {
+	display: inline;
+	list-style: none;
+	padding: 0px 0.7em;
+}
+.overview {
+	display: grid;
+	grid-template-columns: 10% 20% 30% 20% 20%;
+	grid-template-rows: 12% auto 10%;
+	grid-column-gap: 0px;
+	grid-row-gap: 0px;
+}
+.filter {
+	grid-column: 1;
+	grid-row: 2;
+}
+.charts {
+	grid-column: 2 / span 4;
+	grid-row: 2;
+}
+.tasks-filter {
+	max-height: 300px;
+	overflow-y: scroll;
+	font-size: 0.7em;
+	padding-left: 0.4em;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.tasks-filter li {
+	list-style: none;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.students-filter {
+	max-height: 250px;
+	font-size: 0.7em;
+	padding-left: 0.4em;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.students-filter li {
+	list-style: none;
 }
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.inactive {
+	text-decoration: line-through;
+	color: hsl(0, 0%, 66%);
 }
