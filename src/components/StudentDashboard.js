@@ -1,20 +1,18 @@
 import React from 'react';
 import DataHandler from '../data/DataHandler';
-import ReactDOM from 'react-dom';
+import Charts from './DashboardCharts';
 import {
 	VictoryBar,
 	VictoryChart,
 	VictoryAxis,
 	VictoryTheme,
 	VictoryGroup,
-	VictoryStack
+	VictoryLine,
+	VictoryLabel,
+	VictoryTooltip,
+	VictoryContainer,
+	VictoryZoomContainer
 } from 'victory';
-const data2012 = [
-	{ quarter: 1, earnings: 13000 },
-	{ quarter: 2, earnings: 16500 },
-	{ quarter: 3, earnings: 14250 },
-	{ quarter: 4, earnings: 19000 }
-];
 
 class StudentDashboard extends React.Component {
 	constructor() {
@@ -27,31 +25,168 @@ class StudentDashboard extends React.Component {
 
 		console.log('state: ', this.state);
 	}
-	showFunScorePerProgram = () => {
+	showScorePerProgram = type => {
 		let program = this.state.program;
 		let data = this.state.rawData;
-		const funScore = program.map((task, index) => {
+		const scoreType = program.map(task => {
 			const scores = data.filter(object => object.task === task);
 			const scoreSom = scores.reduce((acc, object) => {
-				return acc + object.fun;
+				switch (type) {
+					case 'fun':
+						{
+							return Math.round((acc + object.fun / scores.length) * 100) / 100;
+						}
+						break;
+					case 'tough': {
+						return (
+							Math.round((acc + object.difficulty / scores.length) * 100) / 100
+						);
+					}
+				}
 			}, 0);
-			return { task: task, funscore: scoreSom };
+			if (type === 'fun') {
+				return { task: task, funscore: scoreSom };
+			}
+			if (type === 'tough') {
+				return { task: task, difficultyscore: scoreSom };
+			}
 		});
-		return funScore;
+		return scoreType;
 	};
+
+	showScorePerStudent() {
+		let students = this.state.students;
+		let data = this.state.rawData;
+		const studentScores = students.map(student => {
+			const scores = data.filter(object => object.name === student);
+			const scoreFun = scores.reduce((acc, object) => {
+				return Math.round((acc + object.fun / scores.length) * 100) / 100;
+			}, 0);
+			const scoreTough = scores.reduce((acc, object) => {
+				return (
+					Math.round((acc + object.difficulty / scores.length) * 100) / 100
+				);
+			}, 0);
+
+			return {
+				name: student,
+				funscore: scoreFun,
+				difficultyscore: scoreTough
+			};
+		});
+
+		return studentScores;
+	}
+
 	render() {
-		const dashboardFunScore = this.showFunScorePerProgram();
-		console.log(dashboardFunScore);
+		const dashboardFunScore = this.showScorePerProgram('fun');
+		const dashboardToughScore = this.showScorePerProgram('tough');
+		const dashboardStudentScore = this.showScorePerStudent();
+		console.log(dashboardStudentScore[0]);
+
 		return (
-			<VictoryChart theme={VictoryTheme.material} domainPadding={10}>
-				<VictoryBar
-					// data={this.dashboardFunScore}
-					data={dashboardFunScore}
-					x='task'
-					// data accessor for y values
-					y='funscore'
-				/>
-			</VictoryChart>
+			<div className={'charts'}>
+				<VictoryChart
+					theme={VictoryTheme.material}
+					width={800}
+					height={325}
+					domainPadding={1}
+				>
+					<VictoryAxis
+						label='Overall scores per task'
+						theme={VictoryTheme.material}
+						fixLabelOverlap={false}
+						style={{
+							axisLabel: { fontSize: 10, padding: 40 },
+							ticks: { stroke: 'grey', size: 5 },
+							tickLabels: { fontSize: 5, padding: 5, angle: 45 }
+						}}
+					/>
+					<VictoryGroup offset={10} colorScale={'qualitative'}>
+						<VictoryBar
+							animate={{
+								duration: 2000,
+								onLoad: { duration: 1000 }
+							}}
+							barWidth={3}
+							height={3}
+							style={{
+								data: { fill: '#c43a31' }
+							}}
+							data={dashboardFunScore}
+							x='task'
+							y='funscore'
+						/>
+						<VictoryBar
+							animate={{
+								duration: 2000,
+								onLoad: { duration: 700 }
+							}}
+							barWidth={2}
+							height={3}
+							style={{
+								data: { fill: '#00a8cc' }
+							}}
+							data={dashboardToughScore}
+							x='task'
+							y='difficultyscore'
+						/>
+					</VictoryGroup>
+				</VictoryChart>
+				<VictoryChart width={800} height={225} domainPadding={0}>
+					<VictoryAxis
+						label='Overall scores per student'
+						theme={VictoryTheme.material}
+						fixLabelOverlap={false}
+						style={{
+							axisLabel: { fontSize: 10, padding: 40 },
+							ticks: { stroke: 'grey', size: 5 },
+							tickLabels: { fontSize: 9, padding: 5, angle: 45 }
+						}}
+					/>
+
+					<VictoryLine
+						animate={{
+							duration: 2000,
+							onLoad: { duration: 1000 }
+						}}
+						style={{
+							data: {
+								stroke: '#c43a31',
+								strokeWidth: 3
+							},
+							labels: {
+								fontSize: 15,
+								fill: ({ datum }) => (datum.x === 3 ? '#000000' : '#c43a31')
+							}
+						}}
+						height={3}
+						data={dashboardStudentScore}
+						x='name'
+						y='funscore'
+					/>
+					<VictoryLine
+						animate={{
+							duration: 2000,
+							onLoad: { duration: 1000 }
+						}}
+						style={{
+							data: {
+								stroke: '#00a8cc',
+								strokeWidth: 3
+							},
+							labels: {
+								fontSize: 15,
+								fill: ({ datum }) => (datum.x === 3 ? '#000000' : '#c43a31')
+							}
+						}}
+						height={3}
+						data={dashboardStudentScore}
+						x='name'
+						y='difficultyscore'
+					/>
+				</VictoryChart>
+			</div>
 		);
 	}
 }
