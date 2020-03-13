@@ -28,3 +28,25 @@ tspan {
 	grid-column: 2 / span 4;
 	grid-row: 2;
 }
+.tasks-filter {
+	max-height: 300px;
+	overflow-y: scroll;
+	font-size: 0.7em;
+	padding-left: 0.4em;
+}
+
+.tasks-filter li {
+	list-style: none;
+}
+.students-filter {
+	max-height: 250px;
+	font-size: 0.7em;
+	padding-left: 0.4em;
+}
+.students-filter li {
+	list-style: none;
+}
+.inactive {
+	text-decoration: line-through;
+	color: hsl(0, 0%, 66%);
+}

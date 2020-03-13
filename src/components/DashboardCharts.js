@@ -12,7 +12,11 @@ import {
 	VictoryZoomContainer
 } from 'victory';
 
-function DashboardCharts() {
+function DashboardCharts(props) {
+	const dashboardStudentScore = props.showScorePerStudent();
+	const dashboardFunScore = this.props.showScorePerProgram('fun');
+	const dashboardToughScore = props.showScorePerProgram('tough');
+
 	return (
 		<div className={'charts'}>
 			<VictoryChart
@@ -42,7 +46,7 @@ function DashboardCharts() {
 						style={{
 							data: { fill: '#c43a31' }
 						}}
-						data={dashboardFunScore}
+						data={props.dashboardFunScore}
 						x='task'
 						y='funscore'
 					/>
@@ -56,7 +60,7 @@ function DashboardCharts() {
 						style={{
 							data: { fill: '#00a8cc' }
 						}}
-						data={dashboardToughScore}
+						data={props.dashboardToughScore}
 						x='task'
 						y='difficultyscore'
 					/>
@@ -90,7 +94,7 @@ function DashboardCharts() {
 						}
 					}}
 					height={3}
-					data={dashboardStudentScore}
+					data={props.dashboardStudentScore}
 					x='name'
 					y='funscore'
 				/>
@@ -110,7 +114,7 @@ function DashboardCharts() {
 						}
 					}}
 					height={3}
-					data={dashboardStudentScore}
+					data={props.dashboardStudentScore}
 					x='name'
 					y='difficultyscore'
 				/>
