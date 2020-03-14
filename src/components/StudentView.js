@@ -1,7 +1,6 @@
 import React from 'react';
 import DataHandler from '../data/DataHandler';
 import Header from './Header';
-import Filter from './Filter';
 import Footer from './Footer';
 import {
 	VictoryBar,
@@ -19,34 +18,31 @@ class StudentView extends React.Component {
 			students: [...DataHandler('students')],
 			program: [...DataHandler('program')],
 			rawData: [...DataHandler('raw')],
-			activeFilter: []
+			activeFilter: [],
+			studentScore: ''
 		};
+		this.studentScoreFromChild = this.studentScoreFromChild.bind(this);
 	}
-	showStudentScore() {
-		let selectedStudent = 'Evelyn';
-		let data = this.state.rawData;
-		const scores = data.filter(object => object.name === selectedStudent);
-		const scoreTough = scores.reduce((acc, object) => {
-			return Math.round((acc + object.difficulty / scores.length) * 100) / 100;
-		}, 0);
 
-		return {
-			name: selectedStudent,
-			funscore: scores,
-			difficultyscore: scoreTough
-		};
+	studentScoreFromChild(newStudentScore) {
+		this.setState({ studentScore: 'test' });
+		console.log(newStudentScore.name, this.state.studentScore);
 	}
+	// 	console.log('click', newStudentScore);
+	// 	this.setState({ studentScore: 'test' });
+	// 	this.dataToChart(newStudentScore.scores);
+	// 	console.log(newStudentScore.name, this.state.studentScore);
+	// }
 
 	render() {
-		console.log(this.showStudentScore());
-		const individualStudentData = this.showStudentScore();
 		return (
 			<div className={'studentview'}>
 				<Header
 					students={this.state.students}
-					showStudentScore={this.showStudentScore}
+					data={this.state.rawData}
+					studentScoreFromChild={this.studentScoreFromChild}
 				/>
-				<h2>Evelyn</h2>
+
 				<VictoryChart
 					theme={VictoryTheme.material}
 					width={800}
@@ -74,7 +70,7 @@ class StudentView extends React.Component {
 							style={{
 								data: { fill: '#00a8cc' }
 							}}
-							data={individualStudentData.funscore}
+							data={this.dataToChart}
 							x='task'
 							y='difficulty'
 						/>
@@ -88,7 +84,7 @@ class StudentView extends React.Component {
 							style={{
 								data: { fill: '#c43a31' }
 							}}
-							data={individualStudentData.funscore}
+							data={this.dataToChart}
 							x='task'
 							y='fun'
 						/>

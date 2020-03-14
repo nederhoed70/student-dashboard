@@ -1,9 +1,24 @@
 import React from 'react';
 
 function Header(props) {
-	const handleMenu = event => {
-		props.showStudentScore(event.title);
+	const showStudentScore = studentId => {
+		let selectedStudent = studentId;
+		let data = props.data;
+		//const scores = data.filter(object => object.name === selectedStudent);
+		const scores = [
+			...new Set(data.filter(object => object.name === selectedStudent))
+		];
+		return {
+			name: selectedStudent,
+			scores: scores
+		};
 	};
+
+	const handleMenu = event => {
+		let studentScore = showStudentScore();
+		props.studentScoreFromChild(event.target.title);
+	};
+
 	console.log(props);
 	const menu = props.students.map(student => (
 		<li
@@ -16,9 +31,9 @@ function Header(props) {
 			{student}
 		</li>
 	));
+
 	return (
 		<header>
-			<h1>Student Dashboard</h1>
 			<nav>
 				<ul>{menu}</ul>
 			</nav>
