@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 function Overview() {
 	return (
 		<Router>
+			<h1>Student Dashboard</h1>
 			<ul className='top-nav'>
 				<li>
 					<Link to='/StudentDashboard'>Dashboard</Link>

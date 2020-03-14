@@ -85,7 +85,7 @@ class StudentDashboard extends React.Component {
 		const dashboardFunScore = this.showScorePerProgram('fun');
 		const dashboardToughScore = this.showScorePerProgram('tough');
 		const dashboardStudentScore = this.showScorePerStudent();
-		console.log(this.state);
+		console.log(dashboardStudentScore);
 
 		return (
 			<div className={'overview'}>
