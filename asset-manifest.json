@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/student-dashboard/static/css/main.23329460.chunk.css",
-    "main.js": "/student-dashboard/static/js/main.0b78eb6f.chunk.js",
-    "main.js.map": "/student-dashboard/static/js/main.0b78eb6f.chunk.js.map",
+    "main.js": "/student-dashboard/static/js/main.39a0e122.chunk.js",
+    "main.js.map": "/student-dashboard/static/js/main.39a0e122.chunk.js.map",
     "runtime-main.js": "/student-dashboard/static/js/runtime-main.03d4b650.js",
     "runtime-main.js.map": "/student-dashboard/static/js/runtime-main.03d4b650.js.map",
     "static/js/2.ce589a6a.chunk.js": "/student-dashboard/static/js/2.ce589a6a.chunk.js",
     "static/js/2.ce589a6a.chunk.js.map": "/student-dashboard/static/js/2.ce589a6a.chunk.js.map",
     "index.html": "/student-dashboard/index.html",
-    "precache-manifest.a24aae014fe1f84aea0c28ae08a1db3a.js": "/student-dashboard/precache-manifest.a24aae014fe1f84aea0c28ae08a1db3a.js",
+    "precache-manifest.cb40b43eabb569a1895380846e28767e.js": "/student-dashboard/precache-manifest.cb40b43eabb569a1895380846e28767e.js",
     "service-worker.js": "/student-dashboard/service-worker.js",
     "static/css/main.23329460.chunk.css.map": "/student-dashboard/static/css/main.23329460.chunk.css.map",
     "static/js/2.ce589a6a.chunk.js.LICENSE.txt": "/student-dashboard/static/js/2.ce589a6a.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.03d4b650.js",
     "static/js/2.ce589a6a.chunk.js",
     "static/css/main.23329460.chunk.css",
-    "static/js/main.0b78eb6f.chunk.js"
+    "static/js/main.39a0e122.chunk.js"
   ]
 }
