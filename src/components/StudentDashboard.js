@@ -20,13 +20,14 @@ class StudentDashboard extends React.Component {
 			students: [...DataHandler('students')],
 			program: [...DataHandler('program')],
 			rawData: [...DataHandler('raw')],
+			filteredData: [...DataHandler('raw')],
 			activeFilter: []
 		};
 
-		console.log('state: ', this.state);
+		console.log('state: ', this.state.filteredData);
 	}
 	alterState = newStateItem => {
-		this.setState({ rawData: [...newStateItem] });
+		this.setState({ filteredData: [...newStateItem] });
 	};
 	filterSwitchToState = filtername => {
 		this.setState({ filter: [...filtername] });
@@ -34,7 +35,7 @@ class StudentDashboard extends React.Component {
 
 	showScorePerProgram = type => {
 		let program = this.state.program;
-		let data = this.state.rawData;
+		let data = this.state.filteredData;
 		const scoreType = program.map(task => {
 			const scores = data.filter(object => object.task === task);
 			const scoreSom = scores.reduce((acc, object) => {
@@ -59,7 +60,7 @@ class StudentDashboard extends React.Component {
 
 	showScorePerStudent() {
 		let students = this.state.students;
-		let data = this.state.rawData;
+		let data = this.state.filteredData;
 		const studentScores = students.map(student => {
 			const scores = data.filter(object => object.name === student);
 			const scoreFun = scores.reduce((acc, object) => {
