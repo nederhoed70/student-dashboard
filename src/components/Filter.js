@@ -5,21 +5,31 @@ function Filter(props) {
 		const dataToFilter = props.rawData;
 		let filteredDataToState = '';
 		if (item === 'name') {
-			filteredDataToState = dataToFilter.filter(each => each.name !== filter);
+			// filteredDataToState = dataToFilter.filter(each => each.name !== filter);
+			filteredDataToState = dataToFilter.filter(
+				each => !props.activeFilter.includes(each.name)
+			);
 		} else if (item === 'task') {
-			filteredDataToState = dataToFilter.filter(each => each.task !== filter);
+			// filteredDataToState = dataToFilter.filter(each => each.task !== filter);
+			filteredDataToState = dataToFilter.filter(
+				each => !props.activeFilter.includes(each.task)
+			);
 		}
 		props.alterState(filteredDataToState);
 	}
 
 	const handleClick = event => {
 		const { title, id } = event.target;
-		event.target.classList = { backgroundColor: 'black' };
 		//filter data in charts by clicked filter
-		filterAllData(id, title);
+
 		let filterList = props.activeFilter;
-		filterList.push(title);
+		if (!props.activeFilter.includes(title)) {
+			filterList.push(title);
+		} else {
+			filterList.shift(title);
+		}
 		props.filterSwitchToState(filterList);
+		filterAllData(id, title);
 	};
 	const studentsFilter = props.students.map(student => (
 		<li
