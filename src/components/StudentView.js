@@ -18,31 +18,40 @@ class StudentView extends React.Component {
 			students: [...DataHandler('students')],
 			program: [...DataHandler('program')],
 			rawData: [...DataHandler('raw')],
-			activeFilter: [],
-			studentScore: ''
+			activeFilter: 'Evelyn',
+			studentScore: []
 		};
 		this.studentScoreFromChild = this.studentScoreFromChild.bind(this);
+		console.log('state:', this.state);
 	}
 
 	studentScoreFromChild(newStudentScore) {
-		this.setState({ studentScore: 'test' });
-		console.log(newStudentScore.name, this.state.studentScore);
+		this.setState({ activeFilter: newStudentScore });
+		this.filterStudentScore();
 	}
-	// 	console.log('click', newStudentScore);
-	// 	this.setState({ studentScore: 'test' });
-	// 	this.dataToChart(newStudentScore.scores);
-	// 	console.log(newStudentScore.name, this.state.studentScore);
-	// }
+	componentDidMount() {
+		this.filterStudentScore();
+	}
+	filterStudentScore() {
+		let studentToFilter = this.state.activeFilter;
+		let dataToFilter = this.state.rawData;
+		let filteredStudentData = dataToFilter.filter(each =>
+			each.name.includes(studentToFilter)
+		);
+		console.log('filteredStudentData: ', filteredStudentData);
+
+		this.setState({ studentScore: filteredStudentData });
+		console.log('state from filter:', this.state);
+	}
 
 	render() {
 		return (
 			<div className={'studentview'}>
 				<Header
-					students={this.state.students}
-					data={this.state.rawData}
+					data={this.state}
 					studentScoreFromChild={this.studentScoreFromChild}
 				/>
-
+				<h2>{this.state.activeFilter}</h2>
 				<VictoryChart
 					theme={VictoryTheme.material}
 					width={800}
@@ -61,30 +70,32 @@ class StudentView extends React.Component {
 					/>
 					<VictoryGroup offset={10} colorScale={'qualitative'}>
 						<VictoryBar
-							animate={{
-								duration: 2000,
-								onLoad: { duration: 700 }
-							}}
+							// animate={
+							// 	{
+							// 	duration: 1300
+							// 		onLoad: { duration: 700 }
+							// 	}
+							// }
 							barWidth={2}
 							height={3}
 							style={{
 								data: { fill: '#00a8cc' }
 							}}
-							data={this.dataToChart}
+							data={this.state.studentScore}
 							x='task'
 							y='difficulty'
 						/>
 						<VictoryBar
-							animate={{
-								duration: 2000,
-								onLoad: { duration: 700 }
-							}}
+							// animate={{
+							// 	duration: 1300
+							// 	// onLoad: { duration: 700 }
+							// }}
 							barWidth={2}
 							height={3}
 							style={{
 								data: { fill: '#c43a31' }
 							}}
-							data={this.dataToChart}
+							data={this.state.studentScore}
 							x='task'
 							y='fun'
 						/>

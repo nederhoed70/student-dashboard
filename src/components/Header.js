@@ -3,8 +3,7 @@ import React from 'react';
 function Header(props) {
 	const showStudentScore = studentId => {
 		let selectedStudent = studentId;
-		let data = props.data;
-		//const scores = data.filter(object => object.name === selectedStudent);
+		let data = props.data.rawData;
 		const scores = [
 			...new Set(data.filter(object => object.name === selectedStudent))
 		];
@@ -19,8 +18,7 @@ function Header(props) {
 		props.studentScoreFromChild(event.target.title);
 	};
 
-	console.log(props);
-	const menu = props.students.map(student => (
+	const menu = props.data.students.map(student => (
 		<li
 			title={student}
 			key={student + 'headermenu'}
