@@ -7,14 +7,25 @@ header {
 	grid-column: 1 / span 5;
 	grid-row: 1;
 }
+a {
+	text-decoration: none;
+}
+
 h1 {
-	line-height: 0.7em;
-	letter-spacing: 0.3em;
+	color: hsl(211, 49%, 55%);
+	font-size: 3em;
+	line-height: 0.9em;
+	letter-spacing: 0.2em;
 	font-weight: 500;
+	margin: 0em;
 }
 h2 {
+	color: hsl(211, 49%, 25%);
+	font-size: 2.1em;
 	font-weight: 400;
 	line-height: 0.5em;
+	text-align: center;
+	margin: 0em;
 }
 h3 {
 	font-weight: 400;
@@ -22,35 +33,64 @@ h3 {
 }
 header ul {
 	display: inline-block;
+	margin: 0em;
+	padding: 0em;
 }
 header li {
 	list-style: none;
 	display: inline-block;
 	padding: 0.1em 1em;
+	color: hsl(211, 49%, 55%);
+}
+
+header li:hover {
+	color: hsl(211, 49%, 28%);
 }
 
 tspan {
 	font-size: 8px;
+}
+.top-title {
+	background-color: #fff;
+	display: flex;
+	justify-content: space-between;
+}
+.top-title img {
+	width: 25%;
+}
+.top-nav {
+	padding: 0.2em 0em;
+	margin: 0px;
+	background-color: hsl(60, 2%, 88%);
 }
 .top-nav li {
 	display: inline;
 	list-style: none;
 	padding: 0px 0.7em;
 }
+.top-nav li a {
+	color: hsl(211, 49%, 55%);
+	font-size: 1.3em;
+}
+.top-nav li a:hover {
+	color: hsl(211, 49%, 28%);
+}
+
 .overview {
 	display: grid;
 	grid-template-columns: 10% 20% 30% 20% 20%;
-	grid-template-rows: 12% auto 10%;
+	grid-template-rows: auto 10%;
 	grid-column-gap: 0px;
 	grid-row-gap: 0px;
 }
 .filter {
 	grid-column: 1;
-	grid-row: 2 / auto;
+	grid-row: 1 / auto;
+	margin: 0.6em 0em;
 }
 .charts {
 	grid-column: 2 / span 4;
-	grid-row: 2 / auto;
+	grid-row: 1 / auto;
 }
 .tasks-filter {
 	max-height: 300px;
@@ -74,6 +114,10 @@ tspan {
 	text-decoration: line-through;
 	color: hsl(0, 0%, 66%);
 }
+#huntr-react-container-2 {
+	margin: 0em;
+}
+
 @font-face {
 	font-family: 'Work Sans';
 	font-style: normal;
