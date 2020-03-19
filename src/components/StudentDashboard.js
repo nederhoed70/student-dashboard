@@ -15,7 +15,19 @@ class StudentDashboard extends React.Component {
 			activeFilter: []
 		};
 	}
-	alterState = newStateItem => {
+	alterState = (id, title) => {
+		let newStateItem = '';
+		switch (id) {
+			case 'name':
+				newStateItem = this.state.rawData.filter(
+					each => !this.state.activeFilter.includes(each.name)
+				);
+				break;
+			case 'task':
+				newStateItem = newStateItem = this.state.rawData.filter(
+					each => !this.state.activeFilter.includes(each.task)
+				);
+		}
 		this.setState({ filteredData: [...newStateItem] });
 	};
 	filterSwitchToState = filtername => {

@@ -1,41 +1,40 @@
 import React from 'react';
 
 function Filter(props) {
-	function filterAllData(item, filter) {
-		const dataToFilter = props.rawData;
-		let filteredDataToState = '';
-		if (item === 'name') {
-			// filteredDataToState = dataToFilter.filter(each => each.name !== filter);
-			filteredDataToState = dataToFilter.filter(
-				each => !props.activeFilter.includes(each.name)
-			);
-		} else if (item === 'task') {
-			// filteredDataToState = dataToFilter.filter(each => each.task !== filter);
-			filteredDataToState = dataToFilter.filter(
-				each => !props.activeFilter.includes(each.task)
-			);
-		}
-		props.alterState(filteredDataToState);
-	}
+	// function filterAllData(item, filter) {
+	// 	const dataToFilter = props.rawData;
+	// 	let filteredDataToState = '';
+	// 	if (item === 'name') {
+	// 		// filteredDataToState = dataToFilter.filter(each => each.name !== filter);
+	// 		filteredDataToState = dataToFilter.filter(
+	// 			each => !filter.includes(each.name)
+	// 		);
+	// 	} else if (item === 'task') {
+	// 		// filteredDataToState = dataToFilter.filter(each => each.task !== filter);
+	// 		filteredDataToState = dataToFilter.filter(
+	// 			each => !filter.includes(each.task)
+	// 		);
+	// 	}
+	// 	props.alterState(filteredDataToState);
+	// }
 
 	const handleClick = event => {
-		const { title, id } = event.target;
+		let { id, title } = event.target;
 		//filter data in charts by clicked filter
-
 		let filterList = props.activeFilter;
 		if (!filterList.includes(title)) {
 			filterList.push(title);
 			console.log('aan');
 			props.filterSwitchToState(filterList);
-		} else {
+		} else if (filterList.includes(title)) {
 			console.log('uit');
-			let newFilterList = filterList.filter(fil => fil !== title);
+			let newFilterList = props.activeFilter.filter(fil => fil !== title);
 			console.log('fl:', newFilterList);
 			props.filterSwitchToState(newFilterList);
 		}
 
 		console.log('state:', props.activeFilter);
-		filterAllData(id, title);
+		props.alterState(id, title);
 	};
 	const studentsFilter = props.students.map(student => (
 		<li

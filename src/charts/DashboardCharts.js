@@ -9,7 +9,6 @@ import {
 } from 'victory';
 
 function DashboardCharts(props) {
-	console.log('props', props);
 	return (
 		<div className={'charts'}>
 			<VictoryChart
