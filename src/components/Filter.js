@@ -23,19 +23,25 @@ function Filter(props) {
 		//filter data in charts by clicked filter
 
 		let filterList = props.activeFilter;
-		if (!props.activeFilter.includes(title)) {
+		if (!filterList.includes(title)) {
 			filterList.push(title);
+			console.log('aan');
+			props.filterSwitchToState(filterList);
 		} else {
-			filterList.shift(title);
+			console.log('uit');
+			let newFilterList = filterList.filter(fil => fil !== title);
+			console.log('fl:', newFilterList);
+			props.filterSwitchToState(newFilterList);
 		}
-		props.filterSwitchToState(filterList);
+
+		console.log('state:', props.activeFilter);
 		filterAllData(id, title);
 	};
 	const studentsFilter = props.students.map(student => (
 		<li
 			className={props.activeFilter.includes(student) ? 'inactive' : 'active'}
 			title={student}
-			key={student}
+			key={(student, 'key')}
 			id={'name'}
 			onClick={handleClick}
 			style={{ cursor: 'pointer' }}
@@ -47,7 +53,7 @@ function Filter(props) {
 		<li
 			className={props.activeFilter.includes(task) ? 'inactive' : 'active'}
 			title={task}
-			key={task}
+			key={(task, 'key')}
 			id={'task'}
 			onClick={handleClick}
 			style={{ cursor: 'pointer' }}

@@ -2,6 +2,7 @@ import React from 'react';
 import DataHandler from '../data/DataHandler';
 import Header from './Header';
 import Footer from './Footer';
+import StudentViewCharts from '../charts/StudentViewCharts';
 import {
 	VictoryBar,
 	VictoryChart,

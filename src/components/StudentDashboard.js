@@ -23,14 +23,12 @@ class StudentDashboard extends React.Component {
 			filteredData: [...DataHandler('raw')],
 			activeFilter: []
 		};
-
-		console.log('state: ', this.state.filteredData);
 	}
 	alterState = newStateItem => {
 		this.setState({ filteredData: [...newStateItem] });
 	};
 	filterSwitchToState = filtername => {
-		this.setState({ filter: [...filtername] });
+		this.setState({ activeFilter: filtername });
 	};
 
 	showScorePerProgram = type => {
