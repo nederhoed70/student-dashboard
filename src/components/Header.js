@@ -14,8 +14,8 @@ function Header(props) {
 	};
 
 	const handleMenu = event => {
-		let studentScore = showStudentScore();
-		props.studentScoreFromChild(event.target.title);
+		//	let studentScore = showStudentScore();
+		props.selectedStudentFromChild(event.target.title);
 	};
 
 	const menu = props.data.students.map(student => (

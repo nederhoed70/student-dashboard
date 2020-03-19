@@ -17,13 +17,6 @@ function DataHandler(requested) {
 
 		case 'program':
 			return [...new Set(data.map(program => program.task))];
-		// return data.reduce((acc, item) => {
-		// 	if (acc.includes(item.task)) {
-		// 		return acc;
-		// 	} else {
-		// 		return acc.concat(item.task);
-		// 	}
-		// }, []);
 
 		default:
 			return null;
