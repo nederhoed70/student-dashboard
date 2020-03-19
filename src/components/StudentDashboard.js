@@ -1,17 +1,8 @@
 import React from 'react';
 import DataHandler from '../data/DataHandler';
-import Header from './Header';
 import Filter from './Filter';
 import Footer from './Footer';
-
-import {
-	VictoryBar,
-	VictoryChart,
-	VictoryAxis,
-	VictoryTheme,
-	VictoryGroup,
-	VictoryLine
-} from 'victory';
+import DashboardCharts from '../charts/DashboardCharts';
 
 class StudentDashboard extends React.Component {
 	constructor() {
@@ -84,7 +75,6 @@ class StudentDashboard extends React.Component {
 		const dashboardFunScore = this.showScorePerProgram('fun');
 		const dashboardToughScore = this.showScorePerProgram('tough');
 		const dashboardStudentScore = this.showScorePerStudent();
-		console.log(dashboardStudentScore);
 
 		return (
 			<div className={'overview'}>
@@ -96,109 +86,11 @@ class StudentDashboard extends React.Component {
 					alterState={this.alterState}
 					filterSwitchToState={this.filterSwitchToState}
 				/>
-
-				<div className={'charts'}>
-					<VictoryChart
-						theme={VictoryTheme.material}
-						width={800}
-						height={325}
-						domainPadding={1}
-					>
-						<VictoryAxis
-							label='Overall scores per task'
-							theme={VictoryTheme.material}
-							fixLabelOverlap={false}
-							style={{
-								axisLabel: { fontSize: 10, padding: 40 },
-								ticks: { stroke: 'grey', size: 5 },
-								tickLabels: { fontSize: 5, padding: 5, angle: 45 }
-							}}
-						/>
-						<VictoryGroup offset={10} colorScale={'qualitative'}>
-							<VictoryBar
-								animate={{
-									duration: 2000,
-									onLoad: { duration: 1000 }
-								}}
-								barWidth={3}
-								height={3}
-								style={{
-									data: { fill: '#c43a31' }
-								}}
-								data={dashboardFunScore}
-								x='task'
-								y='funscore'
-							/>
-							<VictoryBar
-								animate={{
-									duration: 2000,
-									onLoad: { duration: 700 }
-								}}
-								barWidth={2}
-								height={3}
-								style={{
-									data: { fill: '#00a8cc' }
-								}}
-								data={dashboardToughScore}
-								x='task'
-								y='difficultyscore'
-							/>
-						</VictoryGroup>
-					</VictoryChart>
-					<VictoryChart width={800} height={225} domainPadding={0}>
-						<VictoryAxis
-							label='Overall scores per student'
-							theme={VictoryTheme.material}
-							fixLabelOverlap={false}
-							style={{
-								axisLabel: { fontSize: 10, padding: 40 },
-								ticks: { stroke: 'grey', size: 5 },
-								tickLabels: { fontSize: 9, padding: 5, angle: 45 }
-							}}
-						/>
-
-						<VictoryLine
-							animate={{
-								duration: 2000,
-								onLoad: { duration: 1000 }
-							}}
-							style={{
-								data: {
-									stroke: '#c43a31',
-									strokeWidth: 3
-								},
-								labels: {
-									fontSize: 15,
-									fill: ({ datum }) => (datum.x === 3 ? '#000000' : '#c43a31')
-								}
-							}}
-							height={3}
-							data={dashboardStudentScore}
-							x='name'
-							y='funscore'
-						/>
-						<VictoryLine
-							animate={{
-								duration: 2000,
-								onLoad: { duration: 1000 }
-							}}
-							style={{
-								data: {
-									stroke: '#00a8cc',
-									strokeWidth: 3
-								},
-								labels: {
-									fontSize: 15,
-									fill: ({ datum }) => (datum.x === 3 ? '#000000' : '#c43a31')
-								}
-							}}
-							height={3}
-							data={dashboardStudentScore}
-							x='name'
-							y='difficultyscore'
-						/>
-					</VictoryChart>
-				</div>
+				<DashboardCharts
+					dashboardFunScore={dashboardFunScore}
+					dashboardToughScore={dashboardToughScore}
+					dashboardStudentScore={dashboardStudentScore}
+				/>
 				<Footer />
 			</div>
 		);

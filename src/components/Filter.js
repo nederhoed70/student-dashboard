@@ -41,7 +41,7 @@ function Filter(props) {
 		<li
 			className={props.activeFilter.includes(student) ? 'inactive' : 'active'}
 			title={student}
-			key={(student, 'key')}
+			key={student + 'key'}
 			id={'name'}
 			onClick={handleClick}
 			style={{ cursor: 'pointer' }}
@@ -53,7 +53,7 @@ function Filter(props) {
 		<li
 			className={props.activeFilter.includes(task) ? 'inactive' : 'active'}
 			title={task}
-			key={(task, 'key')}
+			key={task + 'key'}
 			id={'task'}
 			onClick={handleClick}
 			style={{ cursor: 'pointer' }}
