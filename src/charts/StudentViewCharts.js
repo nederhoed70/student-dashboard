@@ -4,15 +4,15 @@ import {
 	VictoryChart,
 	VictoryAxis,
 	VictoryTheme,
-	VictoryGroup,
-	VictoryLine
+	VictoryGroup
 } from 'victory';
 
 function StudentViewCharts(props) {
 	return (
 		<VictoryChart
+			style={{ parent: { maxWidth: '70%' } }}
 			theme={VictoryTheme.material}
-			width={800}
+			width={600}
 			height={325}
 			domainPadding={1}
 		>

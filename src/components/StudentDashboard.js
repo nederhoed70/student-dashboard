@@ -15,6 +15,7 @@ class StudentDashboard extends React.Component {
 			activeFilter: []
 		};
 	}
+
 	alterState = (id, title) => {
 		let newStateItem = '';
 		switch (id) {
@@ -24,14 +25,27 @@ class StudentDashboard extends React.Component {
 				);
 				break;
 			case 'task':
-				newStateItem = newStateItem = this.state.rawData.filter(
+				newStateItem = this.state.rawData.filter(
 					each => !this.state.activeFilter.includes(each.task)
 				);
 		}
 		this.setState({ filteredData: [...newStateItem] });
 	};
-	filterSwitchToState = filtername => {
-		this.setState({ activeFilter: filtername });
+	handleClick = event => {
+		let { id, title } = event.target;
+		if (this.state.activeFilter.includes(title)) {
+			console.log('zit in filter, gaat eruit');
+			this.setState({
+				activeFilter: this.state.activeFilter.filter(item => item !== title)
+			});
+			console.log(this.state.activeFilter);
+			this.alterState(id);
+		} else {
+			console.log('zit niet in filter, komt bij filter');
+			this.setState({ activeFilter: this.state.activeFilter.concat(title) });
+			console.log(this.state.activeFilter);
+			this.alterState(id);
+		}
 	};
 
 	showScorePerProgram = type => {
@@ -97,6 +111,7 @@ class StudentDashboard extends React.Component {
 					activeFilter={this.state.activeFilter}
 					alterState={this.alterState}
 					filterSwitchToState={this.filterSwitchToState}
+					handleClick={this.handleClick}
 				/>
 				<DashboardCharts
 					dashboardFunScore={dashboardFunScore}

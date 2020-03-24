@@ -12,6 +12,7 @@ function DashboardCharts(props) {
 	return (
 		<div className={'charts'}>
 			<VictoryChart
+				style={{ parent: { maxWidth: '70%' } }}
 				theme={VictoryTheme.material}
 				width={800}
 				height={325}
@@ -58,7 +59,12 @@ function DashboardCharts(props) {
 					/>
 				</VictoryGroup>
 			</VictoryChart>
-			<VictoryChart width={800} height={225} domainPadding={0}>
+			<VictoryChart
+				width={800}
+				height={225}
+				domainPadding={0}
+				style={{ parent: { maxWidth: '70%' } }}
+			>
 				<VictoryAxis
 					label='Overall scores per student'
 					theme={VictoryTheme.material}
