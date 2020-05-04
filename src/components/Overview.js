@@ -4,31 +4,36 @@ import StudentDashboard from './StudentDashboard';
 import StudentView from './StudentView';
 import winclogo from './resources/winc-logo.jpg';
 
-function Overview() {
-	return (
-		<Router>
-			<div className='top-title'>
-				<img src={winclogo} />
-				<h1>Student Dashboard</h1>
-			</div>
-			<ul className='top-nav'>
-				<li>
-					<Link to='/StudentDashboard'>Dashboard</Link>
-				</li>
-				<li>
-					<Link to='/StudentView'>Studentview</Link>
-				</li>
-			</ul>
-			<Switch>
-				<Route path='/StudentDashBoard'>
-					<StudentDashboard />
-				</Route>
-				<Route path='/StudentView'>
-					<StudentView />
-				</Route>
-			</Switch>
-		</Router>
-	);
+class Overview extends React.Component {
+	render() {
+		return (
+			<Router>
+				<div className='page-header' id='top-title'>
+					<img src={winclogo} alt={'Winc Student Dashboard'} />
+					<h1>Student Dashboard</h1>
+				</div>
+				<ul className='top-nav'>
+					<li>
+						<Link to='/StudentDashboard'>Dashboard</Link>
+					</li>
+					<li>
+						<Link to='/StudentView'>Studentview</Link>
+					</li>
+				</ul>
+				<Switch>
+					<Route exact path='/' component={StudentDashboard} />
+					{/* <StudentDashboard />
+					</Route> */}
+					<Route path='/StudentDashboard' component={StudentDashboard} />
+					{/* <StudentDashboard />
+					</Route> */}
+					<Route path='/StudentView'>
+						<StudentView />
+					</Route>
+				</Switch>
+			</Router>
+		);
+	}
 }
 
 export default Overview;

@@ -5,7 +5,7 @@ import {
 	VictoryAxis,
 	VictoryTheme,
 	VictoryGroup,
-	VictoryLine
+	VictoryLine,
 } from 'victory';
 
 function DashboardCharts(props) {
@@ -25,19 +25,19 @@ function DashboardCharts(props) {
 					style={{
 						axisLabel: { fontSize: 10, padding: 40 },
 						ticks: { stroke: 'grey', size: 5 },
-						tickLabels: { fontSize: 5, padding: 5, angle: 45 }
+						tickLabels: { fontSize: 5, padding: 5, angle: 45 },
 					}}
 				/>
 				<VictoryGroup offset={10} colorScale={'qualitative'}>
 					<VictoryBar
 						animate={{
 							duration: 2000,
-							onLoad: { duration: 1000 }
+							onLoad: { duration: 1000 },
 						}}
 						barWidth={3}
 						height={3}
 						style={{
-							data: { fill: '#c43a31' }
+							data: { fill: '#c43a31' },
 						}}
 						data={props.dashboardFunScore}
 						x='task'
@@ -46,12 +46,12 @@ function DashboardCharts(props) {
 					<VictoryBar
 						animate={{
 							duration: 2000,
-							onLoad: { duration: 700 }
+							onLoad: { duration: 700 },
 						}}
 						barWidth={2}
 						height={3}
 						style={{
-							data: { fill: '#00a8cc' }
+							data: { fill: '#00a8cc' },
 						}}
 						data={props.dashboardToughScore}
 						x='task'
@@ -72,24 +72,24 @@ function DashboardCharts(props) {
 					style={{
 						axisLabel: { fontSize: 10, padding: 40 },
 						ticks: { stroke: 'grey', size: 5 },
-						tickLabels: { fontSize: 9, padding: 5, angle: 45 }
+						tickLabels: { fontSize: 9, padding: 5, angle: 45 },
 					}}
 				/>
 
 				<VictoryLine
 					animate={{
 						duration: 2000,
-						onLoad: { duration: 1000 }
+						onLoad: { duration: 1000 },
 					}}
 					style={{
 						data: {
 							stroke: '#c43a31',
-							strokeWidth: 3
+							strokeWidth: 3,
 						},
 						labels: {
 							fontSize: 15,
-							fill: ({ datum }) => (datum.x === 3 ? '#000000' : '#c43a31')
-						}
+							fill: ({ datum }) => (datum.x === 3 ? '#000000' : '#c43a31'),
+						},
 					}}
 					height={3}
 					data={props.dashboardStudentScore}
@@ -99,17 +99,17 @@ function DashboardCharts(props) {
 				<VictoryLine
 					animate={{
 						duration: 2000,
-						onLoad: { duration: 1000 }
+						onLoad: { duration: 1000 },
 					}}
 					style={{
 						data: {
 							stroke: '#00a8cc',
-							strokeWidth: 3
+							strokeWidth: 3,
 						},
 						labels: {
 							fontSize: 15,
-							fill: ({ datum }) => (datum.x === 3 ? '#000000' : '#c43a31')
-						}
+							fill: ({ datum }) => (datum.x === 3 ? '#000000' : '#c43a31'),
+						},
 					}}
 					height={3}
 					data={props.dashboardStudentScore}
