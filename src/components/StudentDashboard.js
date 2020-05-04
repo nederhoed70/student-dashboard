@@ -12,7 +12,7 @@ class StudentDashboard extends React.Component {
 			program: [...DataHandler('program')],
 			rawData: [...DataHandler('raw')],
 			filteredData: [...DataHandler('raw')],
-			activeFilter: []
+			activeFilter: [],
 		};
 	}
 
@@ -21,38 +21,46 @@ class StudentDashboard extends React.Component {
 		switch (id) {
 			case 'name':
 				newStateItem = this.state.rawData.filter(
-					each => !this.state.activeFilter.includes(each.name)
+					(each) => !this.state.activeFilter.includes(each.name)
 				);
 				break;
 			case 'task':
 				newStateItem = this.state.rawData.filter(
-					each => !this.state.activeFilter.includes(each.task)
+					(each) => !this.state.activeFilter.includes(each.task)
 				);
 		}
 		this.setState({ filteredData: [...newStateItem] });
 	};
-	handleClick = event => {
+	handleClick = (event) => {
 		let { id, title } = event.target;
+		let newFilter = '';
+		let stateFilter = this.state.activeFilter;
 		if (this.state.activeFilter.includes(title)) {
-			console.log('zit in filter, gaat eruit');
-			this.setState({
-				activeFilter: this.state.activeFilter.filter(item => item !== title)
-			});
+			console.log(title, 'zit in filter, gaat eruit');
+
+			newFilter = stateFilter.filter((item) => item !== title);
+			this.setState(
+				{
+					activeFilter: newFilter,
+				},
+				() => this.alterState(id)
+			);
+			console.log('newFilter: ', newFilter);
 			console.log(this.state.activeFilter);
-			this.alterState(id);
 		} else {
-			console.log('zit niet in filter, komt bij filter');
-			this.setState({ activeFilter: this.state.activeFilter.concat(title) });
+			console.log(title, 'zit niet in filter, komt bij filter');
+			newFilter = this.state.activeFilter;
+			newFilter.push(title);
+			this.setState({ activeFilter: newFilter }, () => this.alterState(id));
 			console.log(this.state.activeFilter);
-			this.alterState(id);
 		}
 	};
 
-	showScorePerProgram = type => {
+	showScorePerProgram = (type) => {
 		let program = this.state.program;
 		let data = this.state.filteredData;
-		const scoreType = program.map(task => {
-			const scores = data.filter(object => object.task === task);
+		const scoreType = program.map((task) => {
+			const scores = data.filter((object) => object.task === task);
 			const scoreSom = scores.reduce((acc, object) => {
 				switch (type) {
 					case 'fun':
@@ -76,8 +84,8 @@ class StudentDashboard extends React.Component {
 	showScorePerStudent() {
 		let students = this.state.students;
 		let data = this.state.filteredData;
-		const studentScores = students.map(student => {
-			const scores = data.filter(object => object.name === student);
+		const studentScores = students.map((student) => {
+			const scores = data.filter((object) => object.name === student);
 			const scoreFun = scores.reduce((acc, object) => {
 				return Math.round((acc + object.fun / scores.length) * 100) / 100;
 			}, 0);
@@ -90,7 +98,7 @@ class StudentDashboard extends React.Component {
 			return {
 				name: student,
 				funscore: scoreFun,
-				difficultyscore: scoreTough
+				difficultyscore: scoreTough,
 			};
 		});
 
@@ -111,7 +119,7 @@ class StudentDashboard extends React.Component {
 					activeFilter={this.state.activeFilter}
 					alterState={this.alterState}
 					filterSwitchToState={this.filterSwitchToState}
-					handleClick={this.handleClick}
+					onClick={this.handleClick}
 				/>
 				<DashboardCharts
 					dashboardFunScore={dashboardFunScore}
