@@ -1,12 +1,12 @@
 import React from 'react';
 
-function Header(props) {
-	const handleMenu = event => {
+function StudentMenu(props) {
+	const handleMenu = (event) => {
 		//	let studentScore = showStudentScore();
 		props.selectedStudentFromChild(event.target.title);
 	};
 
-	const menu = props.data.students.map(student => (
+	const menu = props.data.students.map((student) => (
 		<li
 			title={student}
 			key={student + 'headermenu'}
@@ -19,12 +19,10 @@ function Header(props) {
 	));
 
 	return (
-		<header>
-			<nav>
-				<ul>{menu}</ul>
-			</nav>
-		</header>
+		<div className='student-menu'>
+			<ul>{menu}</ul>
+		</div>
 	);
 }
 
-export default Header;
+export default StudentMenu;

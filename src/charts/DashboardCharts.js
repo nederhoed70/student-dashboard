@@ -12,7 +12,7 @@ function DashboardCharts(props) {
 	return (
 		<div className={'charts'}>
 			<VictoryChart
-				style={{ parent: { maxWidth: '70%' } }}
+				style={{ parent: { maxWidth: '100%' } }}
 				theme={VictoryTheme.material}
 				width={800}
 				height={325}
@@ -28,7 +28,8 @@ function DashboardCharts(props) {
 						tickLabels: { fontSize: 5, padding: 5, angle: 45 },
 					}}
 				/>
-				<VictoryGroup offset={10} colorScale={'qualitative'}>
+				<VictoryAxis dependentAxis />
+				<VictoryGroup offset={8} colorScale={'qualitative'}>
 					<VictoryBar
 						animate={{
 							duration: 2000,
@@ -63,7 +64,7 @@ function DashboardCharts(props) {
 				width={800}
 				height={225}
 				domainPadding={0}
-				style={{ parent: { maxWidth: '70%' } }}
+				style={{ parent: { maxWidth: '100%' } }}
 			>
 				<VictoryAxis
 					label='Overall scores per student'
@@ -75,7 +76,7 @@ function DashboardCharts(props) {
 						tickLabels: { fontSize: 9, padding: 5, angle: 45 },
 					}}
 				/>
-
+				<VictoryAxis dependentAxis />
 				<VictoryLine
 					animate={{
 						duration: 2000,

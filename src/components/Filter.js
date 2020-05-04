@@ -3,7 +3,7 @@ import React from 'react';
 class Filter extends React.Component {
 	render() {
 		const studentsFilter = this.props.students.map((student) => (
-			<li
+			<div
 				className={
 					this.props.activeFilter.includes(student) ? 'inactive' : 'active'
 				}
@@ -14,10 +14,10 @@ class Filter extends React.Component {
 				style={{ cursor: 'pointer' }}
 			>
 				{student}
-			</li>
+			</div>
 		));
 		const tasksFilter = this.props.tasks.map((task) => (
-			<li
+			<div
 				className={
 					this.props.activeFilter.includes(task) ? 'inactive' : 'active'
 				}
@@ -28,15 +28,15 @@ class Filter extends React.Component {
 				style={{ cursor: 'pointer' }}
 			>
 				{task.replace(/\s/g, '').substring(0, 7)}
-			</li>
+			</div>
 		));
 		return (
-			<div className={'column-lg-2 column-md-2 column-sm-2 column-xs-2'}>
+			<div className={'filter-menu'}>
 				<h2>Filters:</h2>
 				<h3>students</h3>
-				<ul className='students-filter'>{studentsFilter}</ul>
+				<div className='students-filter'>{studentsFilter}</div>
 				<h3>tasks</h3>
-				<ul className='tasks-filter'>{tasksFilter}</ul>
+				<div className='tasks-filter'>{tasksFilter}</div>
 			</div>
 		);
 	}

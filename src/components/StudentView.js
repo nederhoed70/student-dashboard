@@ -1,6 +1,6 @@
 import React from 'react';
 import DataHandler from '../data/DataHandler';
-import Header from './Header';
+import StudentMenu from './StudentMenu';
 import Footer from './Footer';
 import StudentViewCharts from '../charts/StudentViewCharts';
 
@@ -12,7 +12,7 @@ class StudentView extends React.Component {
 			program: [...DataHandler('program')],
 			rawData: [...DataHandler('raw')],
 			activeFilter: '',
-			studentScore: []
+			studentScore: [],
 		};
 		this.selectedStudentFromChild = this.selectedStudentFromChild.bind(this);
 	}
@@ -25,7 +25,7 @@ class StudentView extends React.Component {
 	filterStudentScore(selectedStudent) {
 		let studentToFilter = selectedStudent;
 		let dataToFilter = this.state.rawData;
-		let filteredStudentData = dataToFilter.filter(each =>
+		let filteredStudentData = dataToFilter.filter((each) =>
 			each.name.includes(studentToFilter)
 		);
 		this.setState({ studentScore: filteredStudentData });
@@ -38,12 +38,14 @@ class StudentView extends React.Component {
 		}
 		return (
 			<div className={'studentview'}>
-				<Header
+				<StudentMenu
 					data={this.state}
 					selectedStudentFromChild={this.selectedStudentFromChild}
 				/>
-				<h2>{this.state.activeFilter}</h2>
+
+				<h2 className='student-name'>{this.state.activeFilter}</h2>
 				{showChart}
+
 				<Footer />
 			</div>
 		);

@@ -28,6 +28,7 @@ class StudentDashboard extends React.Component {
 				newStateItem = this.state.rawData.filter(
 					(each) => !this.state.activeFilter.includes(each.task)
 				);
+				break;
 		}
 		this.setState({ filteredData: [...newStateItem] });
 	};
@@ -37,7 +38,6 @@ class StudentDashboard extends React.Component {
 		let stateFilter = this.state.activeFilter;
 		if (this.state.activeFilter.includes(title)) {
 			console.log(title, 'zit in filter, gaat eruit');
-
 			newFilter = stateFilter.filter((item) => item !== title);
 			this.setState(
 				{
