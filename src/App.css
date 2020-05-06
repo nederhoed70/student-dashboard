@@ -36,7 +36,7 @@ h3 {
 }
 .filter-menu {
 	background-color: hsl(60, 2%, 85%);
-	position: absolute;
+	position: fixed;
 	left: -160px;
 	transition: 0.3s;
 	margin-top: 2%;

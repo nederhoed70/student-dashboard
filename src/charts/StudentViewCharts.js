@@ -10,10 +10,10 @@ import {
 function StudentViewCharts(props) {
 	return (
 		<VictoryChart
-			// domain={{ y: [0, 4] }}
 			style={{ parent: { maxWidth: '100%', margin: 0 } }}
 			theme={VictoryTheme.material}
-			height={'200'}
+			width={470}
+			height={235}
 		>
 			<VictoryAxis
 				label='Overall scores per task'

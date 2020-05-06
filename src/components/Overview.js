@@ -24,8 +24,10 @@ class Overview extends React.Component {
 					<Switch>
 						<Route exact path='/' component={StudentDashboard} />
 
-						<Route path='/StudentDashboard' component={StudentDashboard} />
-
+						<Route path='/student-dashboard' component={StudentDashboard} />
+						<Route path='/StudentDashboard'>
+							<StudentDashboard />
+						</Route>
 						<Route path='/StudentView'>
 							<StudentView />
 						</Route>

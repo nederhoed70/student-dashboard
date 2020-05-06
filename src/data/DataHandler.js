@@ -13,10 +13,10 @@ function DataHandler(requested) {
 			return data;
 
 		case 'students':
-			return [...new Set(data.map(student => student.name))];
+			return [...new Set(data.map((student) => student.name))];
 
 		case 'program':
-			return [...new Set(data.map(program => program.task))];
+			return [...new Set(data.map((program) => program.task))];
 
 		default:
 			return null;
