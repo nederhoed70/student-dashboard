@@ -1,6 +1,6 @@
 * {
-	margin: 0em;
-	padding: 0em;
+	margin: 0px;
+	padding: 0px;
 }
 
 body {
@@ -8,7 +8,6 @@ body {
 	background-color: hsl(60, 2%, 95%);
 }
 header {
-	height: 3em;
 	grid-column: 1 / span 5;
 	grid-row: 1;
 }
@@ -18,7 +17,7 @@ a {
 
 h1 {
 	color: hsl(211, 49%, 55%);
-	font-size: 3em;
+	font-size: 2em;
 	line-height: 0.9em;
 	letter-spacing: 0.2em;
 	font-weight: 500;
@@ -26,29 +25,83 @@ h1 {
 }
 h2 {
 	color: hsl(211, 49%, 25%);
-	font-size: 2.1em;
+	font-size: 1.7em;
 	font-weight: 400;
-	line-height: 0.5em;
 	text-align: center;
 	margin: 0em;
 }
+
 h3 {
 	font-weight: 400;
-	line-height: 0.5em;
 }
-header ul {
-	display: inline-block;
-	margin: 0em;
-	padding: 0em;
+.filter-menu {
+	background-color: hsl(60, 2%, 85%);
+	position: fixed;
+	left: -160px;
+	transition: 0.3s;
+	margin-top: 2%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-right: 25px;
+	border-left: 0px;
+	border-top: 1px;
+	border-right: 4px;
+	border-bottom: 1px;
+	border-style: solid;
+	border-color: hsl(211, 49%, 25%);
+	border-radius: 0px 15px 15px 0px;
+	z-index: 10;
+	-webkit-box-shadow: 10px 0px 18px 3px rgba(0, 0, 0, 0.35);
+	-moz-box-shadow: 10px 0px 18px 3px rgba(0, 0, 0, 0.35);
+	box-shadow: 10px 0px 18px 3px rgba(0, 0, 0, 0.35);
 }
-header li {
+.filter-menu:hover {
+	left: 0;
+}
+
+.inactive {
+	text-decoration: line-through;
+	color: hsl(0, 0%, 66%);
+	padding: 0.2em;
+}
+.active {
+	text-decoration: none;
+
+	padding: 0.05em 0.2em;
+}
+.student-menu ul {
+	background-color: hsl(60, 2%, 85%);
+	position: absolute;
+	left: -100px;
+	transition: 0.3s;
+	margin-top: 2%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-right: 25px;
+	border-left: 0px;
+	border-top: 1px;
+	border-right: 4px;
+	border-bottom: 1px;
+	border-style: solid;
+	border-color: hsl(211, 49%, 25%);
+	border-radius: 0px 15px 15px 0px;
+	z-index: 10;
+	-webkit-box-shadow: 10px 0px 18px 3px rgba(0, 0, 0, 0.35);
+	-moz-box-shadow: 10px 0px 18px 3px rgba(0, 0, 0, 0.35);
+	box-shadow: 10px 0px 18px 3px rgba(0, 0, 0, 0.35);
+}
+.student-menu ul:hover {
+	left: 0;
+}
+.student-menu li {
+	font-size: 1.2em;
 	list-style: none;
-	display: inline-block;
-	padding: 0.1em 1em;
+	display: block;
+	padding: 0.3em 1em;
 	color: hsl(211, 49%, 55%);
 }
 
-header li:hover {
+.student-menu li:hover {
 	color: hsl(211, 49%, 28%);
 }
 
@@ -64,7 +117,6 @@ tspan {
 	width: 25%;
 }
 .top-nav {
-	padding: 0.2em 0em;
 	margin: 0px;
 	background-color: hsl(60, 2%, 88%);
 }
@@ -82,11 +134,11 @@ tspan {
 }
 
 .overview {
-	display: grid;
+	/* display: grid;
 	grid-template-columns: 10% 20% 30% 20% 20%;
-	grid-auto-rows: minmax(5em, 20em);
-	grid-column-gap: 0em;
-	grid-row-gap: 0em;
+	grid-auto-rows: minmax(0px, 600px);
+	grid-column-gap: 0;
+	grid-row-gap: 0; */
 }
 .filter {
 	grid-column: 1;
@@ -98,10 +150,13 @@ tspan {
 	grid-row: 1 / auto;
 }
 .tasks-filter {
-	max-height: 300px;
-	overflow-y: scroll;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: 1fr;
+	gap: 1px 1px;
+	grid-template-areas: '. . .';
+
 	font-size: 0.7em;
-	padding-left: 0.4em;
 }
 
 .tasks-filter li {
@@ -114,17 +169,6 @@ tspan {
 }
 .students-filter li {
 	list-style: none;
-}
-.inactive {
-	text-decoration: line-through;
-	color: hsl(0, 0%, 66%);
-}
-.VictoryContainer {
-	margin: 0em;
-	padding: 0em;
-}
-#huntr-react-container-2 {
-	margin: 0em;
 }
 
 @font-face {

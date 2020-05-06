@@ -9,28 +9,30 @@ class Overview extends React.Component {
 		return (
 			<Router>
 				<div className='page-header' id='top-title'>
-					<img src={winclogo} alt={'Winc Student Dashboard'} />
+					<img src={winclogo} alt={'Winc Student Dashboard'} width={150} />
 					<h1>Student Dashboard</h1>
 				</div>
-				<ul className='top-nav'>
-					<li>
-						<Link to='/StudentDashboard'>Dashboard</Link>
-					</li>
-					<li>
-						<Link to='/StudentView'>Studentview</Link>
-					</li>
-				</ul>
-				<Switch>
-					<Route exact path='/' component={StudentDashboard} />
-					{/* <StudentDashboard />
-					</Route> */}
-					<Route path='/StudentDashboard' component={StudentDashboard} />
-					{/* <StudentDashboard />
-					</Route> */}
-					<Route path='/StudentView'>
-						<StudentView />
-					</Route>
-				</Switch>
+				<nav>
+					<ul className='top-nav'>
+						<li>
+							<Link to='/StudentDashboard'>Dashboard</Link>
+						</li>
+						<li>
+							<Link to='/StudentView'>Studentview</Link>
+						</li>
+					</ul>
+					<Switch>
+						<Route exact path='/' component={StudentDashboard} />
+
+						<Route path='/student-dashboard' component={StudentDashboard} />
+						<Route path='/StudentDashboard'>
+							<StudentDashboard />
+						</Route>
+						<Route path='/StudentView'>
+							<StudentView />
+						</Route>
+					</Switch>
+				</nav>
 			</Router>
 		);
 	}
